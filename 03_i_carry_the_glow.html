@@ -1,0 +1,907 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Phraseon – I Carry the Glow · Sync Catalog</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #eef2f5;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            padding: 2rem;
+        }
+
+        .page {
+            max-width: 1100px;
+            margin: 0 auto 2rem auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            overflow: hidden;
+            page-break-after: always;
+            break-inside: avoid;
+        }
+
+        .cover {
+            background: linear-gradient(135deg, #1e3a2f 0%, #0f2a1f 100%);
+            color: white;
+        }
+
+        .song-header {
+            background: linear-gradient(135deg, #1a2a3a 0%, #0f1a24 100%);
+            color: white;
+            padding: 1.8rem 2.5rem;
+        }
+
+        .song-header h1 {
+            font-size: 2rem;
+            font-weight: 600;
+            letter-spacing: -0.01em;
+            margin-bottom: 0.25rem;
+        }
+
+        .song-header .artist {
+            font-size: 1rem;
+            opacity: 0.8;
+            margin-top: 0.2rem;
+        }
+
+        .song-header .meta-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-top: 1rem;
+            border-top: 1px solid rgba(255,255,255,0.2);
+            padding-top: 1rem;
+            font-size: 0.85rem;
+        }
+
+        .song-header .meta-row span {
+            background: rgba(255,255,255,0.15);
+            padding: 0.2rem 0.8rem;
+            border-radius: 40px;
+        }
+
+        .content {
+            padding: 2rem 2.5rem;
+        }
+
+        .info-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 1.5rem;
+        }
+
+        .info-table tr {
+            border-bottom: 1px solid #eef2f6;
+        }
+
+        .info-table td {
+            padding: 0.8rem 0.5rem 0.8rem 0;
+            vertical-align: top;
+        }
+
+        .info-table td:first-child {
+            width: 150px;
+            font-weight: 600;
+            color: #1e2f3e;
+        }
+
+        .info-table td:last-child {
+            color: #2c3e44;
+        }
+
+        .quote-block {
+            background: #f8fafc;
+            border-left: 4px solid #c4452c;
+            padding: 1rem 1.5rem;
+            margin: 1.5rem 0;
+            font-style: italic;
+            border-radius: 0 12px 12px 0;
+            font-size: 1rem;
+            color: #1a2a3a;
+        }
+
+        .quote-text {
+            font-weight: 500;
+        }
+
+        .quote-attribution {
+            margin-top: 0.5rem;
+            font-size: 0.8rem;
+            font-style: normal;
+            color: #5f6c72;
+        }
+
+        .section-title {
+            font-size: 1rem;
+            font-weight: 600;
+            color: #1e2f3e;
+            border-bottom: 2px solid #e2e8f0;
+            padding-bottom: 0.3rem;
+            margin: 1.5rem 0 0.8rem 0;
+        }
+
+        .story-text {
+            line-height: 1.45;
+            margin-bottom: 1rem;
+            color: #2c3e44;
+        }
+
+        .tag-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 0.5rem;
+        }
+
+        .tag {
+            background: #f1f5f9;
+            padding: 0.2rem 1rem;
+            border-radius: 30px;
+            font-size: 0.75rem;
+            font-weight: 500;
+            color: #1e2f3e;
+        }
+
+        .footer-note {
+            margin-top: 2rem;
+            font-size: 0.7rem;
+            color: #7e8c94;
+            text-align: center;
+            border-top: 1px solid #eef2f6;
+            padding-top: 1rem;
+        }
+
+        .cover-content {
+            padding: 2.5rem;
+            text-align: center;
+        }
+
+        .cover-content h2 {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            letter-spacing: -0.02em;
+        }
+
+        .cover-content .artist-name {
+            font-size: 1.5rem;
+            opacity: 0.9;
+            margin-bottom: 1rem;
+        }
+
+        .cover-details {
+            margin: 2rem 0;
+            font-size: 1rem;
+            line-height: 1.6;
+            color: #e0e7e3;
+        }
+
+        .cover-details p {
+            margin: 0.5rem 0;
+        }
+
+        .tracklist {
+            margin: 2rem auto;
+            max-width: 400px;
+            text-align: left;
+            background: rgba(255,255,255,0.1);
+            border-radius: 16px;
+            padding: 1rem 1.5rem;
+        }
+
+        .tracklist h3 {
+            font-size: 1.1rem;
+            margin-bottom: 0.75rem;
+            font-weight: 500;
+        }
+
+        .tracklist ol {
+            margin-left: 1.2rem;
+            line-height: 1.5;
+        }
+
+        .tracklist a {
+            color: white;
+            text-decoration: none;
+            border-bottom: 1px dotted rgba(255,255,255,0.5);
+        }
+
+        .tracklist a:hover {
+            border-bottom: 1px solid white;
+        }
+
+        @media print {
+            body {
+                background: white;
+                padding: 0;
+                margin: 0;
+            }
+            .page {
+                box-shadow: none;
+                border-radius: 0;
+                margin: 0;
+                page-break-after: always;
+            }
+            .song-header, .cover {
+                print-color-adjust: exact;
+                -webkit-print-color-adjust: exact;
+            }
+            .quote-block, .tag {
+                print-color-adjust: exact;
+            }
+            .footer-note {
+                position: relative;
+                bottom: 0;
+            }
+            .tracklist a {
+                color: white;
+                border-bottom: none;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<!-- COVER SHEET -->
+<div class="page cover" id="cover">
+    <div class="cover-content">
+        <h2>I Carry the Glow</h2>
+        <div class="artist-name">Phraseon</div>
+        <div class="cover-details">
+            <p>Release year: 2026 · Album 3</p>
+            <p>Genre: Indie Pop / Alt Pop · 10 tracks</p>
+            <p>Mood: Upbeat, ecstatic, intimate, grateful – from explosive joy to quiet warmth</p>
+            <p>Primary instruments: clean electric guitar, driving drums, bright synths, warm Rhodes, piano</p>
+        </div>
+        <div class="tracklist">
+            <h3>📀 Track listing</h3>
+            <ol>
+                <li><a href="#track0">I Choose the Climb</a></li>
+                <li><a href="#track1">I Breathe Again</a></li>
+                <li><a href="#track2">The Waiting Ends</a></li>
+                <li><a href="#track3">I Dive to Fly</a></li>
+                <li><a href="#track4">We Glow as One</a></li>
+                <li><a href="#track5">I Chase the Light</a></li>
+                <li><a href="#track6">I Turn the Page</a></li>
+                <li><a href="#track7">It Starts Today</a></li>
+                <li><a href="#track8">Soar Above the Noise</a></li>
+                <li><a href="#track9">I Carry the Glow</a></li>
+            </ol>
+        </div>
+        <div class="footer-note" style="border-top-color: rgba(255,255,255,0.2); color: #ccc;">
+            Sync catalog prepared for licensing · All rights cleared for pitch · Contact: phraseon.official@gmail.com
+        </div>
+    </div>
+</div>
+
+<!-- TRACK 1: I Choose the Climb -->
+<div class="page" id="track0">
+    <div class="song-header">
+        <h1>I Choose the Climb</h1>
+        <div class="artist">Phraseon — Album "I Carry the Glow" (Track 1)</div>
+        <div class="meta-row">
+            <span>🎧 Indie Pop / Alt Pop</span>
+            <span>🎚️ 110 BPM</span>
+            <span>🎤 Female vocal</span>
+            <span>⚡ Upbeat / Driving</span>
+        </div>
+    </div>
+    <div class="content">
+        <table class="info-table">
+            <tr>
+                <td>BPM</td>
+                <td><strong>110</strong> steady forward motion</td>
+            </tr>
+            <tr>
+                <td>Key</td>
+                <td>Not specified – adaptable</td>
+            </tr>
+            <tr>
+                <td>Mood / Feeling</td>
+                <td>Determination → self‑realisation → quiet triumph</td>
+            </tr>
+            <tr>
+                <td>Instrumentation</td>
+                <td>Clean electric guitar lead, driving kick‑snare, bright synth pad, prominent bass. No piano – guitar‑forward.</td>
+            </tr>
+            <tr>
+                <td>Lyrical theme</td>
+                <td>Choosing the hard path over comfort; discovering inner strength through deliberate effort.</td>
+            </tr>
+            <tr>
+                <td>Suggested sync use</td>
+                <td>Inspirational sports montages, travel/adventure commercials, fitness content, overcoming‑obstacles scenes, coming‑of‑age films, "morning motivation" editorial.</td>
+            </tr>
+        </table>
+        <div class="quote-block">
+            <div class="quote-text">“I choose the climb / The gravel knows / I claim the steep / My breath my own”</div>
+            <div class="quote-attribution">— hook / chorus lyric</div>
+        </div>
+        <div class="section-title">🎬 Story snapshot</div>
+        <div class="story-text">A woman refuses an easy way (the bus). She climbs a hill alone, feels the gravel, hears her own breath. Halfway up, she pauses and sees the town below. At the top, the sky is wide — she realises capability she didn't know she had. No speech, just quiet awe.</div>
+        <div class="section-title">🏷️ Keywords / tags</div>
+        <div class="tag-group">
+            <span class="tag">determined</span><span class="tag">hopeful</span><span class="tag">resilience</span>
+            <span class="tag">rising energy</span><span class="tag">indie pop</span><span class="tag">female fronted</span>
+            <span class="tag">guitar driven</span><span class="tag">110 bpm</span><span class="tag">sports sync</span>
+            <span class="tag">travel</span><span class="tag">self discovery</span>
+        </div>
+        <div class="section-title">🎚️ Production notes (for editors)</div>
+        <ul style="margin-left: 1.4rem; color: #2c3e44; line-height: 1.4;">
+            <li>Structure: Verse – Pre‑chorus – Chorus – Verse – Pre‑chorus – Chorus – Bridge – Chorus – Outro</li>
+        </ul>
+        <div class="footer-note">
+            Sync brief prepared for licensing & supervision · © 2026 · All rights cleared for pitch<br>
+            Contact: phraseon.official@gmail.com · IPI available upon request
+        </div>
+    </div>
+</div>
+
+<!-- TRACK 2: I Breathe Again -->
+<div class="page" id="track1">
+    <div class="song-header">
+        <h1>I Breathe Again</h1>
+        <div class="artist">Phraseon — Album "I Carry the Glow" (Track 2)</div>
+        <div class="meta-row">
+            <span>🎧 Indie Pop</span>
+            <span>🎚️ 110 BPM</span>
+            <span>🎤 Female vocal</span>
+            <span>⚡ Upbeat / Joyful</span>
+        </div>
+    </div>
+    <div class="content">
+        <table class="info-table">
+            <tr>
+                <td>BPM</td>
+                <td><strong>110</strong></td>
+            </tr>
+            <tr>
+                <td>Key</td>
+                <td>Not specified – adaptable</td>
+            </tr>
+            <tr>
+                <td>Mood / Feeling</td>
+                <td>Upbeat, optimistic, hopeful, driving, celebratory – tension → release → awe → freedom</td>
+            </tr>
+            <tr>
+                <td>Instrumentation</td>
+                <td>Sparkling clean electric guitar arpeggio, airy synth pad, light strings, soft handclaps, driving kick‑snare</td>
+            </tr>
+            <tr>
+                <td>Lyrical theme</td>
+                <td>After weeks of hidden tension, a person releases the knot and discovers freedom – awe, celebration, joy.</td>
+            </tr>
+            <tr>
+                <td>Suggested sync use</td>
+                <td>Morning motivation, wellness content, sunrise scenes, personal transformation arcs, “new beginning” commercials.</td>
+            </tr>
+        </table>
+        <div class="quote-block">
+            <div class="quote-text">“I breathe again / The knot unties / My lungs expand / I realize / The air is wide”</div>
+            <div class="quote-attribution">— hook / chorus lyric</div>
+        </div>
+        <div class="section-title">🎬 Story snapshot</div>
+        <div class="story-text">She wakes at 5 AM. Chest tight for weeks without realising. Opens the window, inhales cool air – the knot unravels. She makes coffee, stretches, greets the sunrise, spins and almost laughs. Freedom in a single breath.</div>
+        <div class="section-title">🏷️ Keywords / tags</div>
+        <div class="tag-group">
+            <span class="tag">weightless</span><span class="tag">joyful</span><span class="tag">morning</span>
+            <span class="tag">release</span><span class="tag">female fronted</span><span class="tag">guitar arpeggio</span>
+            <span class="tag">110 bpm</span><span class="tag">hopeful</span><span class="tag">wellness</span>
+        </div>
+        <div class="section-title">🎚️ Production notes (for editors)</div>
+        <ul style="margin-left: 1.4rem; color: #2c3e44; line-height: 1.4;">
+            <li>Structure: Verse 1 – Pre‑chorus 1 – Chorus 1 – Verse 2 – Pre‑chorus 2 – Chorus 2 – Bridge – Chorus 3 – Outro</li>
+        </ul>
+        <div class="footer-note">
+            Sync brief prepared for licensing & supervision · © 2026 · All rights cleared for pitch<br>
+            Contact: phraseon.official@gmail.com · IPI available upon request
+        </div>
+    </div>
+</div>
+
+<!-- TRACK 3: The Waiting Ends -->
+<div class="page" id="track2">
+    <div class="song-header">
+        <h1>The Waiting Ends</h1>
+        <div class="artist">Phraseon — Album "I Carry the Glow" (Track 3)</div>
+        <div class="meta-row">
+            <span>🎧 Alt Pop</span>
+            <span>🎚️ 120 BPM</span>
+            <span>🎤 Female vocal</span>
+            <span>⚡ Ecstatic / Explosive</span>
+        </div>
+    </div>
+    <div class="content">
+        <table class="info-table">
+            <tr>
+                <td>BPM</td>
+                <td><strong>120</strong></td>
+            </tr>
+            <tr>
+                <td>Key</td>
+                <td>Not specified – adaptable</td>
+            </tr>
+            <tr>
+                <td>Mood / Feeling</td>
+                <td>Confident waiting → ecstatic joy → forward drive. No valleys – pure ascent.</td>
+            </tr>
+            <tr>
+                <td>Instrumentation</td>
+                <td>Bright synth lead, staccato synth stabs, clean electric guitar rhythm, driving kick‑snare, crisp hi‑hats, light strings</td>
+            </tr>
+            <tr>
+                <td>Lyrical theme</td>
+                <td>The moment a long wait finally ends – not with quiet relief, but with explosive joy and immediate forward motion.</td>
+            </tr>
+            <tr>
+                <td>Suggested sync use</td>
+                <td>Victory montages, celebration scenes, graduation, cross‑finish line moments, “finally approved” content.</td>
+            </tr>
+        </table>
+        <div class="quote-block">
+            <div class="quote-text">“The waiting ends – I throw my fist / My laugh returns, a hit! / The waiting ends – I spin, I twist / I ride the wind, I'm lit”</div>
+            <div class="quote-attribution">— hook / chorus lyric</div>
+        </div>
+        <div class="section-title">🎬 Story snapshot</div>
+        <div class="story-text">She checks a status bar one last time. It fills. “Approved.” She throws fists in the air, spins, laughs, grabs keys and jacket, sun blasts through the window – she’s out the door before the echo fades. Waiting ends, running begins.</div>
+        <div class="section-title">🏷️ Keywords / tags</div>
+        <div class="tag-group">
+            <span class="tag">victory</span><span class="tag">explosive joy</span><span class="tag">forward motion</span>
+            <span class="tag">synth lead</span><span class="tag">120 bpm</span><span class="tag">staccato</span>
+            <span class="tag">female fronted</span><span class="tag">celebration</span><span class="tag">sports sync</span>
+        </div>
+        <div class="section-title">🎚️ Production notes (for editors)</div>
+        <ul style="margin-left: 1.4rem; color: #2c3e44; line-height: 1.4;">
+            <li>Structure: Verse 1 – Pre‑chorus 1 – Chorus 1 – Verse 2 – Pre‑chorus 2 – Chorus 2 – Bridge – Chorus 3 – Outro</li>
+        </ul>
+        <div class="footer-note">
+            Sync brief prepared for licensing & supervision · © 2026 · All rights cleared for pitch<br>
+            Contact: phraseon.official@gmail.com · IPI available upon request
+        </div>
+    </div>
+</div>
+
+<!-- TRACK 4: I Dive to Fly -->
+<div class="page" id="track3">
+    <div class="song-header">
+        <h1>I Dive to Fly</h1>
+        <div class="artist">Phraseon — Album "I Carry the Glow" (Track 4)</div>
+        <div class="meta-row">
+            <span>🎧 Indie Pop</span>
+            <span>🎚️ 120 BPM</span>
+            <span>🎤 Female vocal</span>
+            <span>⚡ Ecstatic / Thrilling</span>
+        </div>
+    </div>
+    <div class="content">
+        <table class="info-table">
+            <tr>
+                <td>BPM</td>
+                <td><strong>120</strong></td>
+            </tr>
+            <tr>
+                <td>Key</td>
+                <td>Not specified – adaptable</td>
+            </tr>
+            <tr>
+                <td>Mood / Feeling</td>
+                <td>Anticipation → dive joy → freefall exaltation → canopy steering → landing triumph.</td>
+            </tr>
+            <tr>
+                <td>Instrumentation</td>
+                <td>Bright synth lead, staccato synth stabs, clean guitar rhythm, driving kick‑snare, crisp hi‑hats, light strings</td>
+            </tr>
+            <tr>
+                <td>Lyrical theme</td>
+                <td>A parachute jump as a controlled fall that becomes flight; landing as launch.</td>
+            </tr>
+            <tr>
+                <td>Suggested sync use</td>
+                <td>Extreme sports, skydiving, travel adventure, “face your fears” campaigns, high‑energy automotive.</td>
+            </tr>
+        </table>
+        <div class="quote-block">
+            <div class="quote-text">“I dive to fly / The air is bright / The fall is light / My heart takes flight / I shout with joy into the sky”</div>
+            <div class="quote-attribution">— hook / chorus lyric</div>
+        </div>
+        <div class="section-title">🎬 Story snapshot</div>
+        <div class="story-text">Climbing in a plane, foot tapping. Door opens, wind blasts. She dives – freefall, shouts joy, pulls cord, steers spirals. Sun bursts through clouds. Lands softly, springs up, laughs, throws arms wide. Not done yet – on the ride.</div>
+        <div class="section-title">🏷️ Keywords / tags</div>
+        <div class="tag-group">
+            <span class="tag">freefall</span><span class="tag">flight</span><span class="tag">adrenaline</span>
+            <span class="tag">joy</span><span class="tag">synth lead</span><span class="tag">staccato</span>
+            <span class="tag">120 bpm</span><span class="tag">female fronted</span><span class="tag">extreme sports</span>
+        </div>
+        <div class="section-title">🎚️ Production notes (for editors)</div>
+        <ul style="margin-left: 1.4rem; color: #2c3e44; line-height: 1.4;">
+            <li>Structure: Verse 1 – Pre‑chorus 1 – Chorus 1 – Verse 2 – Pre‑chorus 2 – Chorus 2 – Bridge – Chorus 3 – Outro</li>
+        </ul>
+        <div class="footer-note">
+            Sync brief prepared for licensing & supervision · © 2026 · All rights cleared for pitch<br>
+            Contact: phraseon.official@gmail.com · IPI available upon request
+        </div>
+    </div>
+</div>
+
+<!-- TRACK 5: We Glow as One -->
+<div class="page" id="track4">
+    <div class="song-header">
+        <h1>We Glow as One</h1>
+        <div class="artist">Phraseon — Album "I Carry the Glow" (Track 5)</div>
+        <div class="meta-row">
+            <span>🎧 Alt Pop</span>
+            <span>🎚️ 120 BPM</span>
+            <span>🎤 Female vocal</span>
+            <span>⚡ Ecstatic / Unifying</span>
+        </div>
+    </div>
+    <div class="content">
+        <table class="info-table">
+            <tr>
+                <td>BPM</td>
+                <td><strong>120</strong></td>
+            </tr>
+            <tr>
+                <td>Key</td>
+                <td>Not specified – adaptable</td>
+            </tr>
+            <tr>
+                <td>Mood / Feeling</td>
+                <td>Ecstatic unity, shared joy, physical connection, release – pure crowd energy.</td>
+            </tr>
+            <tr>
+                <td>Instrumentation</td>
+                <td>Punchy clean electric guitar (mild overdrive), handclaps, driving kick‑snare, bright synth pad, stadium reverb</td>
+            </tr>
+            <tr>
+                <td>Lyrical theme</td>
+                <td>Two people in a concert crowd become one with the music and each other.</td>
+            </tr>
+            <tr>
+                <td>Suggested sync use</td>
+                <td>Festival highlights, nightlife, crowd moments, “togetherness” commercials, sports arena anthems.</td>
+            </tr>
+        </table>
+        <div class="quote-block">
+            <div class="quote-text">“We glow as one / The beat drops loud / We are the crowd / Our pulses high / We touch the light / We rise and fly into the sky”</div>
+            <div class="quote-attribution">— hook / chorus lyric</div>
+        </div>
+        <div class="section-title">🎬 Story snapshot</div>
+        <div class="story-text">Concert crowd, bass thumps, strangers jump. Her man grabs her wrist, pulls close, shouts “Together!” Lights explode, beat drops. They become the crowd – squeeze hands, jump and land, lose the ground. One body, one heat, no end.</div>
+        <div class="section-title">🏷️ Keywords / tags</div>
+        <div class="tag-group">
+            <span class="tag">crowd</span><span class="tag">unity</span><span class="tag">handclaps</span>
+            <span class="tag">festival</span><span class="tag">stadium reverb</span><span class="tag">punchy guitar</span>
+            <span class="tag">120 bpm</span><span class="tag">female fronted</span><span class="tag">nightlife</span>
+        </div>
+        <div class="section-title">🎚️ Production notes (for editors)</div>
+        <ul style="margin-left: 1.4rem; color: #2c3e44; line-height: 1.4;">
+            <li>Structure: Verse 1 – Pre‑chorus 1 – Chorus 1 – Verse 2 – Pre‑chorus 2 – Chorus 2 – Bridge – Chorus 3 – Outro</li>
+        </ul>
+        <div class="footer-note">
+            Sync brief prepared for licensing & supervision · © 2026 · All rights cleared for pitch<br>
+            Contact: phraseon.official@gmail.com · IPI available upon request
+        </div>
+    </div>
+</div>
+
+<!-- TRACK 6: I Chase the Light -->
+<div class="page" id="track5">
+    <div class="song-header">
+        <h1>I Chase the Light</h1>
+        <div class="artist">Phraseon — Album "I Carry the Glow" (Track 6)</div>
+        <div class="meta-row">
+            <span>🎧 Indie Pop</span>
+            <span>🎚️ 120 BPM</span>
+            <span>🎤 Female vocal</span>
+            <span>⚡ Anthemic / Joyful</span>
+        </div>
+    </div>
+    <div class="content">
+        <table class="info-table">
+            <tr>
+                <td>BPM</td>
+                <td><strong>120</strong></td>
+            </tr>
+            <tr>
+                <td>Key</td>
+                <td>Not specified – adaptable</td>
+            </tr>
+            <tr>
+                <td>Mood / Feeling</td>
+                <td>Effortless joy, runner's high, transcendence, freedom, awe – pure ascent.</td>
+            </tr>
+            <tr>
+                <td>Instrumentation</td>
+                <td>Bright synth lead, arpeggiated synth stabs, clean guitar rhythm, handclaps, light strings, driving drums</td>
+            </tr>
+            <tr>
+                <td>Lyrical theme</td>
+                <td>A sunset run along the ocean – chasing light, feeling awe, full of life.</td>
+            </tr>
+            <tr>
+                <td>Suggested sync use</td>
+                <td>Running/fitness campaigns, sunset tourism, inspirational reels, outdoor adventure, “carpe diem” montages.</td>
+            </tr>
+        </table>
+        <div class="quote-block">
+            <div class="quote-text">“I chase the light / The ocean glows / The sunset flows / My feet take flight / I'm jumping high into the light”</div>
+            <div class="quote-attribution">— hook / chorus lyric</div>
+        </div>
+        <div class="section-title">🎬 Story snapshot</div>
+        <div class="story-text">Sunset ocean boardwalk. Shoes squeak, heart takes flight. Water flat as glass, road of flame. Breath steady, salt breeze like a psalm. Realisation: the awe is not ahead – it is in her chest and stride.</div>
+        <div class="section-title">🏷️ Keywords / tags</div>
+        <div class="tag-group">
+            <span class="tag">sunset</span><span class="tag">running</span><span class="tag">ocean</span>
+            <span class="tag">anthemic</span><span class="tag">handclaps</span><span class="tag">bright synth</span>
+            <span class="tag">120 bpm</span><span class="tag">female fronted</span><span class="tag">fitness</span>
+        </div>
+        <div class="section-title">🎚️ Production notes (for editors)</div>
+        <ul style="margin-left: 1.4rem; color: #2c3e44; line-height: 1.4;">
+            <li>Structure: Verse 1 – Pre‑chorus 1 – Chorus 1 – Verse 2 – Pre‑chorus 2 – Chorus 2 – Bridge – Chorus 3 – Outro</li>
+        </ul>
+        <div class="footer-note">
+            Sync brief prepared for licensing & supervision · © 2026 · All rights cleared for pitch<br>
+            Contact: phraseon.official@gmail.com · IPI available upon request
+        </div>
+    </div>
+</div>
+
+<!-- TRACK 7: I Turn the Page -->
+<div class="page" id="track6">
+    <div class="song-header">
+        <h1>I Turn the Page</h1>
+        <div class="artist">Phraseon — Album "I Carry the Glow" (Track 7)</div>
+        <div class="meta-row">
+            <span>🎧 Indie Pop</span>
+            <span>🎚️ 110 BPM</span>
+            <span>🎤 Female vocal</span>
+            <span>⚡ Bittersweet / Grateful</span>
+        </div>
+    </div>
+    <div class="content">
+        <table class="info-table">
+            <tr>
+                <td>BPM</td>
+                <td><strong>110</strong></td>
+            </tr>
+            <tr>
+                <td>Key</td>
+                <td>Not specified – adaptable</td>
+            </tr>
+            <tr>
+                <td>Mood / Feeling</td>
+                <td>Upbeat, bittersweet, grateful, driving – joyful anticipation with subtle acknowledgment of leaving.</td>
+            </tr>
+            <tr>
+                <td>Instrumentation</td>
+                <td>Clean fingerpicked electric guitar, soft brushed snare, warm synth pad, light strings, soft piano accents, close mic feel</td>
+            </tr>
+            <tr>
+                <td>Lyrical theme</td>
+                <td>Moving to a new country, carrying photos of dear friends, turning the page with gratitude and a touch of bittersweet.</td>
+            </tr>
+            <tr>
+                <td>Suggested sync use</td>
+                <td>Life transitions, graduation, moving away, friendship tributes, coming‑of‑age, “new chapter” storytelling.</td>
+            </tr>
+        </table>
+        <div class="quote-block">
+            <div class="quote-text">“I turn the page and start the flight / My friends shine bright / I carry every one in sight / Their inner light”</div>
+            <div class="quote-attribution">— hook / chorus lyric</div>
+        </div>
+        <div class="section-title">🎬 Story snapshot</div>
+        <div class="story-text">Boxes packed, photos spread on the floor – each a friend, a laughing face. She slides them into an envelope, zips her bag, bare walls, warm sun. Passport shows younger eyes. She takes a cab, catches her flight. The past becomes trusted friend.</div>
+        <div class="section-title">🏷️ Keywords / tags</div>
+        <div class="tag-group">
+            <span class="tag">bittersweet</span><span class="tag">gratitude</span><span class="tag">friendship</span>
+            <span class="tag">moving</span><span class="tag">fingerpicked guitar</span><span class="tag">brushed snare</span>
+            <span class="tag">110 bpm</span><span class="tag">female fronted</span><span class="tag">coming of age</span>
+        </div>
+        <div class="section-title">🎚️ Production notes (for editors)</div>
+        <ul style="margin-left: 1.4rem; color: #2c3e44; line-height: 1.4;">
+            <li>Structure: Verse 1 – Pre‑chorus 1 – Chorus 1 – Verse 2 – Pre‑chorus 2 – Chorus 2 – Bridge – Chorus 3 – Outro</li>
+        </ul>
+        <div class="footer-note">
+            Sync brief prepared for licensing & supervision · © 2026 · All rights cleared for pitch<br>
+            Contact: phraseon.official@gmail.com · IPI available upon request
+        </div>
+    </div>
+</div>
+
+<!-- TRACK 8: It Starts Today -->
+<div class="page" id="track7">
+    <div class="song-header">
+        <h1>It Starts Today</h1>
+        <div class="artist">Phraseon — Album "I Carry the Glow" (Track 8)</div>
+        <div class="meta-row">
+            <span>🎧 Indie Pop</span>
+            <span>🎚️ 110 BPM</span>
+            <span>🎤 Female vocal</span>
+            <span>⚡ Playful / Eager</span>
+        </div>
+    </div>
+    <div class="content">
+        <table class="info-table">
+            <tr>
+                <td>BPM</td>
+                <td><strong>110</strong></td>
+            </tr>
+            <tr>
+                <td>Key</td>
+                <td>Not specified – adaptable</td>
+            </tr>
+            <tr>
+                <td>Mood / Feeling</td>
+                <td>Upbeat, joyful, eager, playful, driving – pure positive energy.</td>
+            </tr>
+            <tr>
+                <td>Instrumentation</td>
+                <td>Bright percussive piano lead, staccato piano stabs, walking bass, driving kick‑snare, light percussion (shaker, tambourine), light synth pad</td>
+            </tr>
+            <tr>
+                <td>Lyrical theme</td>
+                <td>The joy of starting something new – a calendar, a red X, dancing in the morning light.</td>
+            </tr>
+            <tr>
+                <td>Suggested sync use</td>
+                <td>New Year’s resolutions, morning routines, productivity apps, goal‑setting campaigns, “first day of school” scenes.</td>
+            </tr>
+        </table>
+        <div class="quote-block">
+            <div class="quote-text">“It starts today / I draw the lines, the red X shines / The page is white / I catch the light, I hold it tight”</div>
+            <div class="quote-attribution">— hook / chorus lyric</div>
+        </div>
+        <div class="section-title">🎬 Story snapshot</div>
+        <div class="story-text">Calendar on wall, red marker. Slashes a big X – squeaking, laughing, crooked, perfect. Tosses marker, dances, ties shoes, stands at the door. Morning cool and bright, takes the first step.</div>
+        <div class="section-title">🏷️ Keywords / tags</div>
+        <div class="tag-group">
+            <span class="tag">playful</span><span class="tag">piano lead</span><span class="tag">walking bass</span>
+            <span class="tag">new beginning</span><span class="tag">calendar</span><span class="tag">morning</span>
+            <span class="tag">110 bpm</span><span class="tag">female fronted</span><span class="tag">resolutions</span>
+        </div>
+        <div class="section-title">🎚️ Production notes (for editors)</div>
+        <ul style="margin-left: 1.4rem; color: #2c3e44; line-height: 1.4;">
+            <li>Structure: Verse 1 – Pre‑chorus 1 – Chorus 1 – Verse 2 – Pre‑chorus 2 – Chorus 2 – Bridge – Chorus 3 – Outro</li>
+        </ul>
+        <div class="footer-note">
+            Sync brief prepared for licensing & supervision · © 2026 · All rights cleared for pitch<br>
+            Contact: phraseon.official@gmail.com · IPI available upon request
+        </div>
+    </div>
+</div>
+
+<!-- TRACK 9: Soar Above the Noise -->
+<div class="page" id="track8">
+    <div class="song-header">
+        <h1>Soar Above the Noise</h1>
+        <div class="artist">Phraseon — Album "I Carry the Glow" (Track 9)</div>
+        <div class="meta-row">
+            <span>🎧 Alt Pop</span>
+            <span>🎚️ 110 BPM</span>
+            <span>🎤 Female vocal</span>
+            <span>⚡ Liberating / Defiant</span>
+        </div>
+    </div>
+    <div class="content">
+        <table class="info-table">
+            <tr>
+                <td>BPM</td>
+                <td><strong>110</strong></td>
+            </tr>
+            <tr>
+                <td>Key</td>
+                <td>Not specified – adaptable</td>
+            </tr>
+            <tr>
+                <td>Mood / Feeling</td>
+                <td>Liberation, exhilaration, defiant joy – the moment she chooses her voice over the noise that kept her small.</td>
+            </tr>
+            <tr>
+                <td>Instrumentation</td>
+                <td>Clean electric guitar arpeggio, full band, driving kick‑snare, walking bass, bright synth pad, handclaps, stadium reverb</td>
+            </tr>
+            <tr>
+                <td>Lyrical theme</td>
+                <td>Leaving a toxic day job, playing an art fair, and finding your true voice in the silence after the song.</td>
+            </tr>
+            <tr>
+                <td>Suggested sync use</td>
+                <td>Quitting your job montages, artist journey, coming‑into‑your‑own scenes, empowerment campaigns, indie film climaxes.</td>
+            </tr>
+        </table>
+        <div class="quote-block">
+            <div class="quote-text">“Above the noise / I find my voice / I climb the air / I leave the chair / I'm burning bright across the sky”</div>
+            <div class="quote-attribution">— hook / chorus lyric</div>
+        </div>
+        <div class="section-title">🎬 Story snapshot</div>
+        <div class="story-text">Cubicle, buzzing light. Resignation sent. She opens guitar case, shuts monitor – walks out. City noise parts. At an art fair, lantern lights, small stage. Mic pop, first chord. A sustained note soars. Crowd still. Silence – hers.</div>
+        <div class="section-title">🏷️ Keywords / tags</div>
+        <div class="tag-group">
+            <span class="tag">liberation</span><span class="tag">guitar arpeggio</span><span class="tag">art fair</span>
+            <span class="tag">defiant joy</span><span class="tag">stadium reverb</span><span class="tag">walking bass</span>
+            <span class="tag">110 bpm</span><span class="tag">female fronted</span><span class="tag">empowerment</span>
+        </div>
+        <div class="section-title">🎚️ Production notes (for editors)</div>
+        <ul style="margin-left: 1.4rem; color: #2c3e44; line-height: 1.4;">
+            <li>Structure: Verse 1 – Pre‑chorus 1 – Chorus 1 – Verse 2 – Pre‑chorus 2 – Chorus 2 – Bridge – Chorus 3 – Outro</li>
+        </ul>
+        <div class="footer-note">
+            Sync brief prepared for licensing & supervision · © 2026 · All rights cleared for pitch<br>
+            Contact: phraseon.official@gmail.com · IPI available upon request
+        </div>
+    </div>
+</div>
+
+<!-- TRACK 10: I Carry the Glow -->
+<div class="page" id="track9">
+    <div class="song-header">
+        <h1>I Carry the Glow</h1>
+        <div class="artist">Phraseon — Album "I Carry the Glow" (Track 10)</div>
+        <div class="meta-row">
+            <span>🎧 Indie Pop</span>
+            <span>🎚️ 85 BPM</span>
+            <span>🎤 Female vocal</span>
+            <span>⚡ Intimate / Grateful</span>
+        </div>
+    </div>
+    <div class="content">
+        <table class="info-table">
+            <tr>
+                <td>BPM</td>
+                <td><strong>85</strong></td>
+            </tr>
+            <tr>
+                <td>Key</td>
+                <td>Not specified – adaptable</td>
+            </tr>
+            <tr>
+                <td>Mood / Feeling</td>
+                <td>Intimate, warm, grateful, mid‑tempo – a quiet, sustained glow. Album's emotional resolution.</td>
+            </tr>
+            <tr>
+                <td>Instrumentation</td>
+                <td>Warm Rhodes, soft piano, brushed drums, light strings – no driving drums, no shout.</td>
+            </tr>
+            <tr>
+                <td>Lyrical theme</td>
+                <td>Carrying the quiet warmth of everyone who helped you; evening, a lamp, a whisper – a gentle closing.</td>
+            </tr>
+            <tr>
+                <td>Suggested sync use</td>
+                <td>End credits, reflective moments, gratitude montages, quiet evening scenes, “found family” moments.</td>
+            </tr>
+        </table>
+        <div class="quote-block">
+            <div class="quote-text">“I carry the glow / A warmth that will not fade / Through every dusk and shade / It hums without a sound / The warmest thing I've found”</div>
+            <div class="quote-attribution">— hook / chorus lyric</div>
+        </div>
+        <div class="section-title">🎬 Story snapshot</div>
+        <div class="story-text">Evening, kitchen table. Single lamp draws gold across wood. She's still – not tired, just quiet. All the running, climbing, dancing is inside as steady heat. She whispers “I carry the glow.” Leaves the lamp on. The glow stays.</div>
+        <div class="section-title">🏷️ Keywords / tags</div>
+        <div class="tag-group">
+            <span class="tag">intimate</span><span class="tag">warm Rhodes</span><span class="tag">brushed drums</span>
+            <span class="tag">gratitude</span><span class="tag">quiet resolution</span><span class="tag">85 bpm</span>
+            <span class="tag">female fronted</span><span class="tag">evening</span><span class="tag">end credits</span>
+        </div>
+        <div class="section-title">🎚️ Production notes (for editors)</div>
+        <ul style="margin-left: 1.4rem; color: #2c3e44; line-height: 1.4;">
+            <li>Structure: Verse 1 – Pre‑chorus – Chorus – Verse 2 – Pre‑chorus – Chorus – Bridge – Chorus – Outro</li>
+        </ul>
+        <div class="footer-note">
+            Sync brief prepared for licensing & supervision · © 2026 · All rights cleared for pitch<br>
+            Contact: phraseon.official@gmail.com · IPI available upon request
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
