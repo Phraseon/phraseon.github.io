@@ -218,80 +218,86 @@
             border-bottom: 1px solid white;
         }
 
+
         @media print {
-        body {
-            background: white;
-            padding: 0;
-            margin: 0;
+            body {
+                background: white;
+                padding: 0;
+                margin: 0;
+            }
+            .page {
+                box-shadow: none;
+                border-radius: 0;
+                margin: 0;
+                page-break-after: always;
+                page-break-inside: avoid;
+            }
+            .song-header, .cover {
+                print-color-adjust: exact;
+                -webkit-print-color-adjust: exact;
+            }
+            .quote-block, .tag {
+                print-color-adjust: exact;
+            }
+            .footer-note {
+                position: relative;
+                bottom: 0;
+            }
+            .tracklist a {
+                color: white;
+                border-bottom: none;
+            }
+            /* Compact adjustments – between moderate and aggressive */
+            .content {
+                padding: 1.2rem 1.8rem !important;
+            }
+            .song-header {
+                padding: 1rem 1.8rem !important;
+            }
+            .info-table td {
+                padding: 0.5rem 0.3rem 0.5rem 0 !important;
+                font-size: 0.9rem;
+            }
+            .info-table td:first-child {
+                width: 130px !important;
+            }
+            .quote-block {
+                padding: 0.6rem 1rem !important;
+                margin: 0.8rem 0 !important;
+            }
+            .quote-text {
+                font-size: 0.95rem;
+            }
+            .section-title {
+                font-size: 0.95rem;
+                margin: 1rem 0 0.5rem 0 !important;
+            }
+            .story-text {
+                font-size: 0.9rem;
+                line-height: 1.35;
+                margin-bottom: 0.6rem;
+            }
+            .tag {
+                font-size: 0.7rem;
+                padding: 0.15rem 0.8rem;
+            }
+            .footer-note {
+                font-size: 0.7rem;
+                margin-top: 1.2rem;
+                padding-top: 0.6rem;
+            }
+            ul {
+                margin-left: 1rem !important;
+            }
+            li {
+                font-size: 0.85rem;
+            }
         }
-        .page {
-            box-shadow: none;
-            border-radius: 0;
-            margin: 0;
-            page-break-after: always;
-            page-break-inside: avoid;
-        }
-        .song-header, .cover {
-            print-color-adjust: exact;
-            -webkit-print-color-adjust: exact;
-        }
-        .quote-block, .tag {
-            print-color-adjust: exact;
-        }
-        .footer-note {
-            position: relative;
-            bottom: 0;
-        }
-        .tracklist a {
-            color: white;
-            border-bottom: none;
-        }
-        /* Compact adjustments – between moderate and aggressive */
-        .content {
-            padding: 1.2rem 1.8rem !important;
-        }
-        .song-header {
-            padding: 1rem 1.8rem !important;
-        }
-        .info-table td {
-            padding: 0.5rem 0.3rem 0.5rem 0 !important;
-            font-size: 0.9rem;
-        }
-        .info-table td:first-child {
-            width: 130px !important;
-        }
-        .quote-block {
-            padding: 0.6rem 1rem !important;
-            margin: 0.8rem 0 !important;
-        }
-        .quote-text {
-            font-size: 0.95rem;
-        }
-        .section-title {
-            font-size: 0.95rem;
-            margin: 1rem 0 0.5rem 0 !important;
-        }
-        .story-text {
-            font-size: 0.9rem;
-            line-height: 1.35;
-            margin-bottom: 0.6rem;
-        }
-        .tag {
-            font-size: 0.7rem;
-            padding: 0.15rem 0.8rem;
-        }
-        .footer-note {
-            font-size: 0.7rem;
-            margin-top: 1.2rem;
-            padding-top: 0.6rem;
-        }
-        ul {
-            margin-left: 1rem !important;
-        }
-        li {
-            font-size: 0.85rem;
-        }
-    }
+
+
+
+
+
     </style>
 </head>
 <body>
@@ -322,8 +328,10 @@
                 <li><a href="#track9">I Carry the Glow</a></li>
             </ol>
         </div>
-        <div class="footer-note" style="border-top-color: rgba(255,255,255,0.2); color: #ccc;">
-            Sync catalog prepared for licensing · All rights cleared for pitch · Contact: phraseon.official@gmail.com
+        <div class="footer-note">
+            Sync catalog prepared for licensing · All rights cleared for pitch · IPI available upon request<br>
+            Contact: <a href="mailto:phraseon.official@gmail.com" style="color: #ccc;">phraseon.official@gmail.com</a><br>
+            🎵 Listen to the full album on YouTube: <a href="https://www.youtube.com/playlist?list=PLdWXMUFiS3SPJGCZkY8EYeWD-YlYDftVn" target="_blank" style="color: #ccc;">YouTube Playlist</a>
         </div>
     </div>
 </div>
@@ -943,7 +951,7 @@
             <li>Structure: Verse 1 – Pre‑chorus – Chorus – Verse 2 – Pre‑chorus – Chorus – Bridge – Chorus – Outro</li>
         </ul>
         <div class="footer-note">
-            Sync brief prepared for licensing & supervision · © 2026 · All rights cleared for pitch <br>
+            Sync brief prepared for licensing & supervision · © 2026 · All rights cleared for pitch<br>
             Contact: phraseon.official@gmail.com · IPI available upon request
         </div>
     </div>
