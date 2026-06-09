@@ -1,0 +1,963 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Phraseon – Lit From Within · Sync Catalog</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #eef2f5;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            padding: 2rem;
+        }
+
+        .page {
+            max-width: 1100px;
+            margin: 0 auto 2rem auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            overflow: hidden;
+            page-break-after: always;
+            break-inside: avoid;
+        }
+
+        .cover {
+            background: linear-gradient(135deg, #1e3a2f 0%, #0f2a1f 100%);
+            color: white;
+        }
+
+        .song-header {
+            background: linear-gradient(135deg, #1a2a3a 0%, #0f1a24 100%);
+            color: white;
+            padding: 1.8rem 2.5rem;
+        }
+
+        .song-header h1 {
+            font-size: 2rem;
+            font-weight: 600;
+            letter-spacing: -0.01em;
+            margin-bottom: 0.25rem;
+        }
+
+        .song-header .artist {
+            font-size: 1rem;
+            opacity: 0.8;
+            margin-top: 0.2rem;
+        }
+
+        .song-header .meta-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-top: 1rem;
+            border-top: 1px solid rgba(255,255,255,0.2);
+            padding-top: 1rem;
+            font-size: 0.85rem;
+        }
+
+        .song-header .meta-row span {
+            background: rgba(255,255,255,0.15);
+            padding: 0.2rem 0.8rem;
+            border-radius: 40px;
+        }
+
+        .content {
+            padding: 2rem 2.5rem;
+        }
+
+        .info-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 1.5rem;
+        }
+
+        .info-table tr {
+            border-bottom: 1px solid #eef2f6;
+        }
+
+        .info-table td {
+            padding: 0.8rem 0.5rem 0.8rem 0;
+            vertical-align: top;
+        }
+
+        .info-table td:first-child {
+            width: 150px;
+            font-weight: 600;
+            color: #1e2f3e;
+        }
+
+        .info-table td:last-child {
+            color: #2c3e44;
+        }
+
+        .quote-block {
+            background: #f8fafc;
+            border-left: 4px solid #c4452c;
+            padding: 1rem 1.5rem;
+            margin: 1.5rem 0;
+            font-style: italic;
+            border-radius: 0 12px 12px 0;
+            font-size: 1rem;
+            color: #1a2a3a;
+        }
+
+        .quote-text {
+            font-weight: 500;
+        }
+
+        .quote-attribution {
+            margin-top: 0.5rem;
+            font-size: 0.8rem;
+            font-style: normal;
+            color: #5f6c72;
+        }
+
+        .section-title {
+            font-size: 1rem;
+            font-weight: 600;
+            color: #1e2f3e;
+            border-bottom: 2px solid #e2e8f0;
+            padding-bottom: 0.3rem;
+            margin: 1.5rem 0 0.8rem 0;
+        }
+
+        .story-text {
+            line-height: 1.45;
+            margin-bottom: 1rem;
+            color: #2c3e44;
+        }
+
+        .tag-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 0.5rem;
+        }
+
+        .tag {
+            background: #f1f5f9;
+            padding: 0.2rem 1rem;
+            border-radius: 30px;
+            font-size: 0.75rem;
+            font-weight: 500;
+            color: #1e2f3e;
+        }
+
+        .footer-note {
+            margin-top: 2rem;
+            font-size: 0.7rem;
+            color: #7e8c94;
+            text-align: center;
+            border-top: 1px solid #eef2f6;
+            padding-top: 1rem;
+        }
+
+        .cover-content {
+            padding: 2.5rem;
+            text-align: center;
+        }
+
+        .cover-content h2 {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            letter-spacing: -0.02em;
+        }
+
+        .cover-content .artist-name {
+            font-size: 1.5rem;
+            opacity: 0.9;
+            margin-bottom: 1rem;
+        }
+
+        .cover-details {
+            margin: 2rem 0;
+            font-size: 1rem;
+            line-height: 1.6;
+            color: #e0e7e3;
+        }
+
+        .cover-details p {
+            margin: 0.5rem 0;
+        }
+
+        .tracklist {
+            margin: 2rem auto;
+            max-width: 400px;
+            text-align: left;
+            background: rgba(255,255,255,0.1);
+            border-radius: 16px;
+            padding: 1rem 1.5rem;
+        }
+
+        .tracklist h3 {
+            font-size: 1.1rem;
+            margin-bottom: 0.75rem;
+            font-weight: 500;
+        }
+
+        .tracklist ol {
+            margin-left: 1.2rem;
+            line-height: 1.5;
+        }
+
+        .tracklist a {
+            color: white;
+            text-decoration: none;
+            border-bottom: 1px dotted rgba(255,255,255,0.5);
+        }
+
+        .tracklist a:hover {
+            border-bottom: 1px solid white;
+        }
+
+        @media print {
+            body {
+                background: white;
+                padding: 0;
+                margin: 0;
+            }
+            .page {
+                box-shadow: none;
+                border-radius: 0;
+                margin: 0;
+                page-break-after: always;
+                page-break-inside: avoid;
+            }
+            .song-header, .cover {
+                print-color-adjust: exact;
+                -webkit-print-color-adjust: exact;
+            }
+            .quote-block, .tag {
+                print-color-adjust: exact;
+            }
+            .footer-note {
+                position: relative;
+                bottom: 0;
+            }
+            .tracklist a {
+                color: white;
+                border-bottom: none;
+            }
+            .content {
+                padding: 1.2rem 1.8rem !important;
+            }
+            .song-header {
+                padding: 1rem 1.8rem !important;
+            }
+            .info-table td {
+                padding: 0.5rem 0.3rem 0.5rem 0 !important;
+                font-size: 0.9rem;
+            }
+            .info-table td:first-child {
+                width: 130px !important;
+            }
+            .quote-block {
+                padding: 0.6rem 1rem !important;
+                margin: 0.8rem 0 !important;
+            }
+            .quote-text {
+                font-size: 0.95rem;
+            }
+            .section-title {
+                font-size: 0.95rem;
+                margin: 1rem 0 0.5rem 0 !important;
+            }
+            .story-text {
+                font-size: 0.9rem;
+                line-height: 1.35;
+                margin-bottom: 0.6rem;
+            }
+            .tag {
+                font-size: 0.7rem;
+                padding: 0.15rem 0.8rem;
+            }
+            .footer-note {
+                font-size: 0.7rem;
+                margin-top: 1.2rem;
+                padding-top: 0.6rem;
+            }
+            ul {
+                margin-left: 1rem !important;
+            }
+            li {
+                font-size: 0.85rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<!-- COVER SHEET -->
+<div class="page cover" id="cover">
+    <div class="cover-content">
+        <h2>Lit From Within</h2>
+        <div class="artist-name">Phraseon</div>
+        <div class="cover-details">
+            <p>Release year: 2026 · Album 4</p>
+            <p>Genre: Indie Pop / Alt Pop · 10 tracks</p>
+            <p>Mood: Determined, ecstatic, intimate – from explosive release to quiet peace</p>
+            <p>Primary instruments: electric guitar, synth, piano, acoustic guitar, drums</p>
+        </div>
+        <div class="tracklist">
+            <h3>📀 Track listing</h3>
+            <ol>
+                <li><a href="#track0">Sunrise Finds Me On the Road</a></li>
+                <li><a href="#track1">Lightning in My Veins Tonight</a></li>
+                <li><a href="#track2">I Drop the Map and Drive It Blind</a></li>
+                <li><a href="#track3">Rise and Ride Into the Light</a></li>
+                <li><a href="#track4">Spark to Flame, I Light the Way</a></li>
+                <li><a href="#track5">Shine So Bright, I Own the Night</a></li>
+                <li><a href="#track6">Step Into the Golden Hour</a></li>
+                <li><a href="#track7">Catch the Rhythm in the Wire</a></li>
+                <li><a href="#track8">Strike the Match, Ignite the Room</a></li>
+                <li><a href="#track9">I Keep the Quiet With You</a></li>
+            </ol>
+        </div>
+        <div class="footer-note">
+            Sync catalog prepared for licensing · All rights cleared for pitch · IPI available upon request<br>
+            Contact: <a href="mailto:phraseon.official@gmail.com" style="color: #ccc;">phraseon.official@gmail.com</a><br>
+            🎵 Listen to the full album on YouTube: <a href="https://www.youtube.com/playlist?list=PLdWXMUFiS3SMqjhUoMZ5tPIZa0mo5HiGn" target="_blank" style="color: #ccc;">YouTube Playlist</a>
+        </div>
+    </div>
+</div>
+
+<!-- TRACK 1: Sunrise Finds Me On the Road -->
+<div class="page" id="track0">
+    <div class="song-header">
+        <h1>Sunrise Finds Me On the Road</h1>
+        <div class="artist">Phraseon — Album "Lit From Within" (Track 1)</div>
+        <div class="meta-row">
+            <span>🎧 Indie Pop / Alt Pop</span>
+            <span>🎚️ 105 BPM</span>
+            <span>🎤 Male vocal</span>
+            <span>⚡ Driving / Optimistic</span>
+        </div>
+    </div>
+    <div class="content">
+        <table class="info-table">
+            <tr>
+                <td>BPM</td>
+                <td><strong>105</strong> steady forward motion</td>
+            </tr>
+            <tr>
+                <td>Key</td>
+                <td>Not specified – adaptable</td>
+            </tr>
+            <tr>
+                <td>Mood / Feeling</td>
+                <td>Hesitation → acceleration → liberation → quiet resolve</td>
+            </tr>
+            <tr>
+                <td>Instrumentation</td>
+                <td>Clean electric guitar lead, driving kick‑snare, bright synth pad, bass forward</td>
+            </tr>
+            <tr>
+                <td>Lyrical theme</td>
+                <td>Leaving the familiar behind to find clarity in motion.</td>
+            </tr>
+            <tr>
+                <td>Suggested sync use</td>
+                <td>Travel montages, sunrise scenes, road trip commercials, motivational content, “new beginning” narratives.</td>
+            </tr>
+        </table>
+        <div class="quote-block">
+            <div class="quote-text">“Sunrise finds me on the road / Dashboard paints the glass in gold / I settle into place / I choose the endless ride”</div>
+            <div class="quote-attribution">— chorus lyric</div>
+        </div>
+        <div class="section-title">🎬 Story snapshot</div>
+        <div class="story-text">A dawn departure. The garage door grinds up, cold keys click, the dashboard glows amber. He shifts into gear, watches the town shrink in the rearview, and drives into the pale sky – no destination, just motion and the promise of clarity.</div>
+        <div class="section-title">🏷️ Keywords / tags</div>
+        <div class="tag-group">
+            <span class="tag">driving</span><span class="tag">optimistic</span><span class="tag">road trip</span>
+            <span class="tag">sunrise</span><span class="tag">electric guitar</span><span class="tag">male vocal</span>
+            <span class="tag">105 bpm</span><span class="tag">indie pop</span><span class="tag">travel</span>
+            <span class="tag">freedom</span><span class="tag">motion</span>
+        </div>
+        <div class="section-title">🎚️ Production notes (for editors)</div>
+        <ul style="margin-left: 1.4rem; color: #2c3e44; line-height: 1.4;">
+            <li>Structure: Verse – Pre‑chorus – Chorus – Verse – Pre‑chorus – Chorus – Bridge – Chorus – Outro</li>
+        </ul>
+        <div class="footer-note">
+            Sync brief prepared for licensing & supervision · © 2026 · All rights cleared for pitch<br>
+            Contact: phraseon.official@gmail.com · IPI available upon request
+        </div>
+    </div>
+</div>
+
+<!-- TRACK 2: Lightning in My Veins Tonight -->
+<div class="page" id="track1">
+    <div class="song-header">
+        <h1>Lightning in My Veins Tonight</h1>
+        <div class="artist">Phraseon — Album "Lit From Within" (Track 2)</div>
+        <div class="meta-row">
+            <span>🎧 Indie Pop / Alt Pop</span>
+            <span>🎚️ 110 BPM</span>
+            <span>🎤 Male vocal</span>
+            <span>⚡ Explosive / Urgent</span>
+        </div>
+    </div>
+    <div class="content">
+        <table class="info-table">
+            <tr>
+                <td>BPM</td>
+                <td><strong>110</strong></td>
+            </tr>
+            <tr>
+                <td>Key</td>
+                <td>Not specified – adaptable</td>
+            </tr>
+            <tr>
+                <td>Mood / Feeling</td>
+                <td>Pent‑up stillness → explosive release → defiant, kinetic liberation</td>
+            </tr>
+            <tr>
+                <td>Instrumentation</td>
+                <td>Clean electric guitar riff, driving kick‑snare, bright synth pad, bass forward</td>
+            </tr>
+            <tr>
+                <td>Lyrical theme</td>
+                <td>A midnight runner shakes off numbness through physical exertion and discovers unstoppable momentum.</td>
+            </tr>
+            <tr>
+                <td>Suggested sync use</td>
+                <td>Sports training montages, high‑energy advertising, gaming trailers, “overcoming inertia” scenes.</td>
+            </tr>
+        </table>
+        <div class="quote-block">
+            <div class="quote-text">“Lightning in my veins tonight / Current strikes the wire / Sparks ignite the fire / Darkness flees the light”</div>
+            <div class="quote-attribution">— chorus lyric</div>
+        </div>
+        <div class="section-title">🎬 Story snapshot</div>
+        <div class="story-text">2:00 AM, an empty parking lot. He sits on a tailgate, tightens his laces, drops his keys. Headphones seal the world out. A heavy bass line kicks in – he sprints, bursts through a streetlamp’s shadow, and the night opens its heart. He runs.</div>
+        <div class="section-title">🏷️ Keywords / tags</div>
+        <div class="tag-group">
+            <span class="tag">running</span><span class="tag">urgent</span><span class="tag">explosive</span>
+            <span class="tag">midnight</span><span class="tag">electric guitar</span><span class="tag">male vocal</span>
+            <span class="tag">110 bpm</span><span class="tag">synth</span><span class="tag">sports</span>
+            <span class="tag">adrenaline</span><span class="tag">kinetic</span>
+        </div>
+        <div class="section-title">🎚️ Production notes (for editors)</div>
+        <ul style="margin-left: 1.4rem; color: #2c3e44; line-height: 1.4;">
+            <li>Structure: Verse – Pre‑chorus – Chorus – Verse – Pre‑chorus – Chorus – Bridge – Chorus – Outro</li>
+        </ul>
+        <div class="footer-note">
+            Sync brief prepared for licensing & supervision · © 2026 · All rights cleared for pitch<br>
+            Contact: phraseon.official@gmail.com · IPI available upon request
+        </div>
+    </div>
+</div>
+
+<!-- TRACK 3: I Drop the Map and Drive It Blind -->
+<div class="page" id="track2">
+    <div class="song-header">
+        <h1>I Drop the Map and Drive It Blind</h1>
+        <div class="artist">Phraseon — Album "Lit From Within" (Track 3)</div>
+        <div class="meta-row">
+            <span>🎧 Alt Pop</span>
+            <span>🎚️ 110 BPM</span>
+            <span>🎤 Male vocal</span>
+            <span>⚡ Determined / Dark</span>
+        </div>
+    </div>
+    <div class="content">
+        <table class="info-table">
+            <tr>
+                <td>BPM</td>
+                <td><strong>110</strong></td>
+            </tr>
+            <tr>
+                <td>Key</td>
+                <td>Not specified – adaptable</td>
+            </tr>
+            <tr>
+                <td>Mood / Feeling</td>
+                <td>Numbness → ignition → surrender to motion → forward clarity</td>
+            </tr>
+            <tr>
+                <td>Instrumentation</td>
+                <td>Dark synth pad, driving kick‑snare, sparse electric guitar, reverb‑soaked accents</td>
+            </tr>
+            </tr>
+            <td>Lyrical theme</td>
+            <td>Decisively leaving routine behind, trusting instinct, and finding clarity on an open county road at night.</td>
+            </tr>
+            </tr>
+            <td>Suggested sync use</td>
+            <td>Late‑night driving scenes, noir‑inspired visuals, “letting go” character arcs, atmospheric thrillers.</td>
+            </tr>
+        </table>
+        <div class="quote-block">
+            <div class="quote-text">“I drop the map and drive it blind / The white lines catch the glow / I leave the gloomy past behind / I let the rhythm go”</div>
+            <div class="quote-attribution">— chorus lyric</div>
+        </div>
+        <div class="section-title">🎬 Story snapshot</div>
+        <div class="story-text">Paper map slides off the seat. He taps the screen, leaves the city street, cracks the window. The center stripes blur, the engine purrs – he turns the wheel, breaks the hold, and drives into the night without a destination.</div>
+        <div class="section-title">🏷️ Keywords / tags</div>
+        <div class="tag-group">
+            <span class="tag">night drive</span><span class="tag">dark</span><span class="tag">determined</span>
+            <span class="tag">atmospheric</span><span class="tag">synth</span><span class="tag">male vocal</span>
+            <span class="tag">110 bpm</span><span class="tag">road</span><span class="tag">blind</span>
+            <span class="tag">trust</span><span class="tag">rhythm</span>
+        </div>
+        <div class="section-title">🎚️ Production notes (for editors)</div>
+        <ul style="margin-left: 1.4rem; color: #2c3e44; line-height: 1.4;">
+            <li>Structure: Verse – Pre‑chorus – Chorus – Verse – Pre‑chorus – Chorus – Bridge – Chorus – Outro</li>
+        </ul>
+        <div class="footer-note">
+            Sync brief prepared for licensing & supervision · © 2026 · All rights cleared for pitch<br>
+            Contact: phraseon.official@gmail.com · IPI available upon request
+        </div>
+    </div>
+</div>
+
+<!-- TRACK 4: Rise and Ride Into the Light -->
+<div class="page" id="track3">
+    <div class="song-header">
+        <h1>Rise and Ride Into the Light</h1>
+        <div class="artist">Phraseon — Album "Lit From Within" (Track 4)</div>
+        <div class="meta-row">
+            <span>🎧 Indie Pop</span>
+            <span>🎚️ 110 BPM</span>
+            <span>🎤 Male vocal</span>
+            <span>⚡ Kinetic / Joyful</span>
+        </div>
+    </div>
+    <div class="content">
+        <table class="info-table">
+            <tr>
+                <td>BPM</td>
+                <td><strong>110</strong></td>
+            </tr>
+            <tr>
+                <td>Key</td>
+                <td>Not specified – adaptable</td>
+            </tr>
+            <tr>
+                <td>Mood / Feeling</td>
+                <td>Stagnation → throttle engagement → surrender to motion → forward clarity</td>
+            </tr>
+            <tr>
+                <td>Instrumentation</td>
+                <td>Clean electric guitar arpeggio, driving kick‑snare, bright synth pad, bass forward</td>
+            </tr>
+            <tr>
+                <td>Lyrical theme</td>
+                <td>Decisive ignition, trusting machine instinct, riding into first light.</td>
+            </tr>
+            <tr>
+                <td>Suggested sync use</td>
+                <td>Motorcycle commercials, sunrise rides, adventure travel, “morning motivation” content.</td>
+            </tr>
+        </table>
+        <div class="quote-block">
+            <div class="quote-text">“I rise and ride into the light / The headlamp cuts the dark so clear / I trade the map for open sight / I grip the throttle, shift and steer”</div>
+            <div class="quote-attribution">— chorus lyric</div>
+        </div>
+        <div class="section-title">🎬 Story snapshot</div>
+        <div class="story-text">6:15 AM. Phone alarm, bare feet on cold hardwood. He pulls the visor, drops the clutch, twists the throttle – the engine catches. He rides into the gold, leaving the sleeping town behind, the highway opening wide.</div>
+        <div class="section-title">🏷️ Keywords / tags</div>
+        <div class="tag-group">
+            <span class="tag">motorcycle</span><span class="tag">sunrise</span><span class="tag">kinetic</span>
+            <span class="tag">uplifting</span><span class="tag">electric guitar</span><span class="tag">male vocal</span>
+            <span class="tag">110 bpm</span><span class="tag">road</span><span class="tag">freedom</span>
+            <span class="tag">throttle</span><span class="tag">ride</span>
+        </div>
+        <div class="section-title">🎚️ Production notes (for editors)</div>
+        <ul style="margin-left: 1.4rem; color: #2c3e44; line-height: 1.4;">
+            <li>Structure: Verse – Pre‑chorus – Chorus – Verse – Pre‑chorus – Chorus – Bridge – Chorus – Outro</li>
+        </ul>
+        <div class="footer-note">
+            Sync brief prepared for licensing & supervision · © 2026 · All rights cleared for pitch<br>
+            Contact: phraseon.official@gmail.com · IPI available upon request
+        </div>
+    </div>
+</div>
+
+<!-- TRACK 5: Spark to Flame, I Light the Way -->
+<div class="page" id="track4">
+    <div class="song-header">
+        <h1>Spark to Flame, I Light the Way</h1>
+        <div class="artist">Phraseon — Album "Lit From Within" (Track 5)</div>
+        <div class="meta-row">
+            <span>🎧 Indie Pop / Alt Pop</span>
+            <span>🎚️ 110 BPM</span>
+            <span>🎤 Male vocal</span>
+            <span>⚡ Triumphant / Building</span>
+        </div>
+    </div>
+    <div class="content">
+        <table class="info-table">
+            <tr>
+                <td>BPM</td>
+                <td><strong>110</strong></td>
+            </tr>
+            <tr>
+                <td>Key</td>
+                <td>Not specified – adaptable</td>
+            </tr>
+            <tr>
+                <td>Mood / Feeling</td>
+                <td>Solitary effort → spark → ignition into leadership → shared ascent</td>
+            </tr>
+            <tr>
+                <td>Instrumentation</td>
+                <td>Soft piano arpeggio, glitchy synth textures, driving kick‑snare, warm synth pad</td>
+            </tr>
+            <tr>
+                <td>Lyrical theme</td>
+                <td>A coder’s solitary breakthrough becoming a team’s guiding fire.</td>
+            </tr>
+            <tr>
+                <td>Suggested sync use</td>
+                <td>Startup promos, tech commercials, leadership narratives, “breakthrough” moments.</td>
+            </tr>
+        </table>
+        <div class="quote-block">
+            <div class="quote-text">“Spark to flame, I light the way / The screen explodes with glow / I draw the flame and let it stay / We let the fire grow”</div>
+            <div class="quote-attribution">— chorus lyric</div>
+        </div>
+        <div class="section-title">🎬 Story snapshot</div>
+        <div class="story-text">2:14 AM, cold blue monitor. A line of code changes, the terminal floods green. He draws a flame on the whiteboard. Months later, a team of eight, a launch chime, numbers climbing – the fire spreads.</div>
+        <div class="section-title">🏷️ Keywords / tags</div>
+        <div class="tag-group">
+            <span class="tag">tech</span><span class="tag">breakthrough</span><span class="tag">leadership</span>
+            <span class="tag">piano</span><span class="tag">synth</span><span class="tag">male vocal</span>
+            <span class="tag">110 bpm</span><span class="tag">triumphant</span><span class="tag">startup</span>
+            <span class="tag">fire</span><span class="tag">team</span>
+        </div>
+        <div class="section-title">🎚️ Production notes (for editors)</div>
+        <ul style="margin-left: 1.4rem; color: #2c3e44; line-height: 1.4;">
+            <li>Structure: Verse – Pre‑chorus – Chorus – Verse – Pre‑chorus – Chorus – Bridge – Chorus – Outro</li>
+        </ul>
+        <div class="footer-note">
+            Sync brief prepared for licensing & supervision · © 2026 · All rights cleared for pitch<br>
+            Contact: phraseon.official@gmail.com · IPI available upon request
+        </div>
+    </div>
+</div>
+
+<!-- TRACK 6: Shine So Bright, I Own the Night -->
+<div class="page" id="track5">
+    <div class="song-header">
+        <h1>Shine So Bright, I Own the Night</h1>
+        <div class="artist">Phraseon — Album "Lit From Within" (Track 6)</div>
+        <div class="meta-row">
+            <span>🎧 Retro‑tinged Indie Pop</span>
+            <span>🎚️ 110 BPM</span>
+            <span>🎤 Male vocal</span>
+            <span>⚡ Confident / Nocturnal</span>
+        </div>
+    </div>
+    <div class="content">
+        <table class="info-table">
+            <tr>
+                <td>BPM</td>
+                <td><strong>110</strong></td>
+            </tr>
+            <tr>
+                <td>Key</td>
+                <td>Not specified – adaptable</td>
+            </tr>
+            <tr>
+                <td>Mood / Feeling</td>
+                <td>Anticipation → explosive launch → dominant confidence → quiet ownership</td>
+            </tr>
+            <tr>
+                <td>Instrumentation</td>
+                <td>Bright synth lead, driving kick‑snare, bass forward, retro synth textures</td>
+            </tr>
+            <tr>
+                <td>Lyrical theme</td>
+                <td>A night street race where a driver discovers his own power – owning the darkness through speed, then silence.</td>
+            </tr>
+            <tr>
+                <td>Suggested sync use</td>
+                .=Automotive commercials, night racing scenes, empowerment montages, “mastery” sequences.</td>
+            </tr>
+        </table>
+        <div class="quote-block">
+            <div class="quote-text">“Shine so bright / The darkness breaks / I start the flight / I claim the fight / I shine so bright and own the night”</div>
+            <div class="quote-attribution">— chorus lyric</div>
+        </div>
+        <div class="section-title">🎬 Story snapshot</div>
+        <div class="story-text">Empty asphalt, chalk start line. Orange flag drops. Engine screams, tires catch, needle climbs. He races his old hesitant self – crosses, eases off, kills the headlights. The night is his.</div>
+        <div class="section-title">🏷️ Keywords / tags</div>
+        <div class="tag-group">
+            <span class="tag">street race</span><span class="tag">nocturnal</span><span class="tag">confident</span>
+            <span class="tag">synth lead</span><span class="tag">retro</span><span class="tag">male vocal</span>
+            <span class="tag">110 bpm</span><span class="tag">automotive</span><span class="tag">speed</span>
+            <span class="tag">night</span><span class="tag">mastery</span>
+        </div>
+        <div class="section-title">🎚️ Production notes (for editors)</div>
+        <ul style="margin-left: 1.4rem; color: #2c3e44; line-height: 1.4;">
+            <li>Structure: Verse – Pre‑chorus – Chorus – Verse – Pre‑chorus – Chorus – Bridge – Chorus – Outro</li>
+        </ul>
+        <div class="footer-note">
+            Sync brief prepared for licensing & supervision · © 2026 · All rights cleared for pitch<br>
+            Contact: phraseon.official@gmail.com · IPI available upon request
+        </div>
+    </div>
+</div>
+
+<!-- TRACK 7: Step Into the Golden Hour -->
+<div class="page" id="track6">
+    <div class="song-header">
+        <h1>Step Into the Golden Hour</h1>
+        <div class="artist">Phraseon — Album "Lit From Within" (Track 7)</div>
+        <div class="meta-row">
+            <span>🎧 Indie Pop / Alt Pop</span>
+            <span>🎚️ 90 BPM</span>
+            <span>🎤 Male vocal</span>
+            <span>⚡ Warm / Reflective</span>
+        </div>
+    </div>
+    <div class="content">
+        <table class="info-table">
+            <tr>
+                <td>BPM</td>
+                <td><strong>90</strong></td>
+            </tr>
+            <tr>
+                <td>Key</td>
+                <td>Not specified – adaptable</td>
+            </tr>
+            <tr>
+                <td>Mood / Feeling</td>
+                <td>Quiet anticipation → awe → creative fulfillment → deep, quiet contentment</td>
+            </tr>
+            <tr>
+                <td>Instrumentation</td>
+                <td>Fingerpicked acoustic guitar, soft brushed snare, light strings, warm bass</td>
+            </tr>
+            <tr>
+                <td>Lyrical theme</td>
+                <td>A photographer walking the city at dawn, capturing first light and discovering that the real gift is simply standing in the golden hour.</td>
+            </tr>
+            <tr>
+                <td>Suggested sync use</td>
+                .=Nature documentaries, travel vlogs, sunrise timelapses, introspective film scenes, wellness content.</td>
+            </tr>
+        </table>
+        <div class="quote-block">
+            <div class="quote-text">“I step into the golden hour / The bakery pours steam / I leave the heavy lens behind / And watch the beauty fly”</div>
+            <div class="quote-attribution">— chorus lyric</div>
+        </div>
+        <div class="section-title">🎬 Story snapshot</div>
+        <div class="story-text">5:15 AM, camera bag ready. He walks east toward the river, raises the lens. The first sunbeam cuts the skyline. He lowers the camera, closes his eyes – the moment is too big to frame. He steps into its quiet form.</div>
+        <div class="section-title">🏷️ Keywords / tags</div>
+        <div class="tag-group">
+            <span class="tag">photography</span><span class="tag">sunrise</span><span class="tag">golden hour</span>
+            <span class="tag">acoustic guitar</span><span class="tag">male vocal</span><span class="tag">90 bpm</span>
+            <span class="tag">intimate</span><span class="tag">city dawn</span><span class="tag">reflective</span>
+            <span class="tag">warm</span><span class="tag">beauty</span>
+        </div>
+        <div class="section-title">🎚️ Production notes (for editors)</div>
+        <ul style="margin-left: 1.4rem; color: #2c3e44; line-height: 1.4;">
+            <li>Structure: Verse – Pre‑chorus – Chorus – Verse – Pre‑chorus – Chorus – Bridge – Chorus – Outro</li>
+        </ul>
+        <div class="footer-note">
+            Sync brief prepared for licensing & supervision · © 2026 · All rights cleared for pitch<br>
+            Contact: phraseon.official@gmail.com · IPI available upon request
+        </div>
+    </div>
+</div>
+
+<!-- TRACK 8: Catch the Rhythm in the Wire -->
+<div class="page" id="track7">
+    <div class="song-header">
+        <h1>Catch the Rhythm in the Wire</h1>
+        <div class="artist">Phraseon — Album "Lit From Within" (Track 8)</div>
+        <div class="meta-row">
+            <span>🎧 Indie Pop</span>
+            <span>🎚️ 110 BPM</span>
+            <span>🎤 Male vocal</span>
+            <span>⚡ Ecstatic / Kinetic</span>
+        </div>
+    </div>
+    <div class="content">
+        <table class="info-table">
+            <tr>
+                <td>BPM</td>
+                <td><strong>110</strong></td>
+            </tr>
+            <tr>
+                <td>Key</td>
+                <td>Not specified – adaptable</td>
+            </tr>
+            <tr>
+                <td>Mood / Feeling</td>
+                <td>Creative frustration → repeated failure → sudden breakthrough → joy → release → quiet fulfillment</td>
+            </tr>
+            <tr>
+                <td>Instrumentation</td>
+                <td>Bass‑forward groove, tight syncopated percussion, warm synth pad, glitchy synth textures</td>
+            </tr>
+            <tr>
+                <td>Lyrical theme</td>
+                <td>A late‑night music producer finally catches the perfect beat through his headphones and finds pure, transcendent joy.</td>
+            </tr>
+            <tr>
+                <td>Suggested sync use</td>
+                .=Studio montages, creative breakthrough scenes, music production content, “flow state” visuals.</td>
+            </tr>
+        </table>
+        <div class="quote-block">
+            <div class="quote-text">“I catch the rhythm in the wire / It pulls me from the chair / The beat takes all the air / I dance across the breathing sound”</div>
+            <div class="quote-attribution">— chorus lyric</div>
+        </div>
+        <div class="section-title">🎬 Story snapshot</div>
+        <div class="story-text">11:47 PM, home studio. Desk lamp, DAW grid, a half‑built beat that refuses to lock. He nudges a kick 16th‑note earlier – the rhythm catches. He rises, dances alone, headphones still on. The wire hums.</div>
+        <div class="section-title">🏷️ Keywords / tags</div>
+        <div class="tag-group">
+            <span class="tag">producer</span><span class="tag">studio</span><span class="tag">breakthrough</span>
+            <span class="tag">bass</span><span class="tag">syncopation</span><span class="tag">male vocal</span>
+            <span class="tag">110 bpm</span><span class="tag">dance</span><span class="tag">wire</span>
+            <span class="tag">rhythm</span><span class="tag">joy</span>
+        </div>
+        <div class="section-title">🎚️ Production notes (for editors)</div>
+        <ul style="margin-left: 1.4rem; color: #2c3e44; line-height: 1.4;">
+            <li>Structure: Verse – Pre‑chorus – Chorus – Verse – Pre‑chorus – Chorus – Bridge – Chorus – Outro</li>
+        </ul>
+        <div class="footer-note">
+            Sync brief prepared for licensing & supervision · © 2026 · All rights cleared for pitch<br>
+            Contact: phraseon.official@gmail.com · IPI available upon request
+        </div>
+    </div>
+</div>
+
+<!-- TRACK 9: Strike the Match, Ignite the Room -->
+<div class="page" id="track8">
+    <div class="song-header">
+        <h1>Strike the Match, Ignite the Room</h1>
+        <div class="artist">Phraseon — Album "Lit From Within" (Track 9)</div>
+        <div class="meta-row">
+            <span>🎧 Indie Pop / Alt Pop</span>
+            <span>🎚️ 110 BPM</span>
+            <span>🎤 Male vocal</span>
+            <span>⚡ Warm / Communal</span>
+        </div>
+    </div>
+    <div class="content">
+        <table class="info-table">
+            <tr>
+                <td>BPM</td>
+                <td><strong>110</strong></td>
+            </tr>
+            <tr>
+                <td>Key</td>
+                <td>Not specified – adaptable</td>
+            </tr>
+            <tr>
+                <td>Mood / Feeling</td>
+                <td>Winter stillness → ignition → gathering → shared joy → quiet, communal contentment</td>
+            </tr>
+            <tr>
+                <td>Instrumentation</td>
+                <td>Strummed acoustic guitar, bright piano, soft brushed snare, warm strings</td>
+            </tr>
+            <tr>
+                <td>Lyrical theme</td>
+                <td>Lighting a fire on a frozen winter night and gathering friends, discovering that the real warmth is the people in the room.</td>
+            </tr>
+            <tr>
+                <td>Suggested sync use</td>
+                .=Winter scenes, family gatherings, holiday commercials, “togetherness” campaigns.</td>
+            </tr>
+        </table>
+        <div class="quote-block">
+            <div class="quote-text">“Ignite the room / The cold retreats / Our song is bright / Embrace is tight / So strike the match – ignite the room”</div>
+            <div class="quote-attribution">— chorus lyric</div>
+        </div>
+        <div class="section-title">🎬 Story snapshot</div>
+        <div class="story-text">Frost on the window, snowdrift outside. He scrapes a match, the kindling catches. Friends arrive, stamping snow, unwinding scarves. The room fills with laughter, glasses clink, frost melts. The match is gone – the warmth remains.</div>
+        <div class="section-title">🏷️ Keywords / tags</div>
+        <div class="tag-group">
+            <span class="tag">winter</span><span class="tag">fireplace</span><span class="tag">friends</span>
+            <span class="tag">acoustic guitar</span><span class="tag">piano</span><span class="tag">male vocal</span>
+            <span class="tag">110 bpm</span><span class="tag">warm</span><span class="tag">communal</span>
+            <span class="tag">gathering</span><span class="tag">kindness</span>
+        </div>
+        <div class="section-title">🎚️ Production notes (for editors)</div>
+        <ul style="margin-left: 1.4rem; color: #2c3e44; line-height: 1.4;">
+            <li>Structure: Verse – Pre‑chorus – Chorus – Verse – Pre‑chorus – Chorus – Bridge – Chorus – Outro</li>
+        </ul>
+        <div class="footer-note">
+            Sync brief prepared for licensing & supervision · © 2026 · All rights cleared for pitch<br>
+            Contact: phraseon.official@gmail.com · IPI available upon request
+        </div>
+    </div>
+</div>
+
+<!-- TRACK 10: I Keep the Quiet With You -->
+<div class="page" id="track9">
+    <div class="song-header">
+        <h1>I Keep the Quiet With You</h1>
+        <div class="artist">Phraseon — Album "Lit From Within" (Track 10)</div>
+        <div class="meta-row">
+            <span>🎧 Indie Pop / Alt Pop</span>
+            <span>🎚️ 85 BPM</span>
+            <span>🎤 Male vocal</span>
+            <span>⚡ Intimate / Tender</span>
+        </div>
+    </div>
+    <div class="content">
+        <table class="info-table">
+            <tr>
+                <td>BPM</td>
+                <td><strong>85</strong></td>
+            </tr>
+            <tr>
+                <td>Key</td>
+                <td>Not specified – adaptable</td>
+            </tr>
+            <tr>
+                <td>Mood / Feeling</td>
+                <td>Intimate, tender, grateful, slow – quiet love that remains after years together</td>
+            </tr>
+            <tr>
+                <td>Instrumentation</td>
+                <td>Warm acoustic guitar, soft brushed snare, light strings, close mic feel</td>
+            </tr>
+            <tr>
+                <td>Lyrical theme</td>
+                <td>The quiet love that remains after years together – the morning kitchen, a shared silence, a hand resting over hers.</td>
+            </tr>
+            <tr>
+                <td>Suggested sync use</td>
+                .=End credits, wedding videos, anniversary montages, reflective romance scenes.</td>
+            </tr>
+        </table>
+        <div class="quote-block">
+            <div class="quote-text">“I keep the quiet with you / It sings without a sound / I keep the quiet with you / The deepest peace I've found”</div>
+            <div class="quote-attribution">— chorus lyric</div>
+        </div>
+        <div class="section-title">🎬 Story snapshot</div>
+        <div class="story-text">Morning. The kettle cools, a narrow light across the floor. She curls into the chair, reading. He rests his palm on hers. No words – just the quiet they choose to keep together.</div>
+        <div class="section-title">🏷️ Keywords / tags</div>
+        <div class="tag-group">
+            <span class="tag">intimate</span><span class="tag">quiet</span><span class="tag">love</span>
+            <span class="tag">acoustic guitar</span><span class="tag">male vocal</span><span class="tag">85 bpm</span>
+            <span class="tag">tender</span><span class="tag">morning</span><span class="tag">silence</span>
+            <span class="tag">peace</span><span class="tag">connection</span>
+        </div>
+        <div class="section-title">🎚️ Production notes (for editors)</div>
+        <ul style="margin-left: 1.4rem; color: #2c3e44; line-height: 1.4;">
+            <li>Structure: Verse – Pre‑chorus – Chorus – Verse – Pre‑chorus – Chorus – Bridge – Chorus – Outro</li>
+        </ul>
+        <div class="footer-note">
+            Sync brief prepared for licensing & supervision · © 2026 · All rights cleared for pitch<br>
+            Contact: phraseon.official@gmail.com · IPI available upon request
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
